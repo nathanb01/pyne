@@ -5,19 +5,17 @@ Supported Platforms
 ^^^^^^^^^^^^^^^^^^^
 
 PyNE is currently built and tested daily on the following platforms
-on Python 2.7
+on Python 2.7 and Python 3.6
 
- * Ubuntu 12.04 - x86_64
- * Ubuntu 10.04 - x86_64
- * Scientific Linux 6 - x86_64
- * OSX 10.8 - x86_64
+ * Ubuntu 16.04
+ * Ubuntu 18.04
+ * 
 
-PyNE has pre-built binaries for the lastest release (0.4) on windows
-mac and linux
+PyNE has pre-built binaries for the lastest releases (5.11, 5.10, 5.3, and 5.1)
+on mac and linux
 
- * Mac (Python 2.7 and Python 3.3) - x86_64
- * Linux (Python 2.7 and Python 3.3) - x86_64
- * Windows (Python 2.7) - x86
+ * Mac (Python 2.7, Python 3.5, and Python 3.6) - x86_64
+ * Linux (Python 2.7, Python 3.5, and Python 3.6) - x86_64
 
 PyNE has known issues on the following platforms
 
