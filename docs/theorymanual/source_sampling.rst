@@ -16,6 +16,7 @@ Meshes can be used to represent particle source distributions for Monte Carlo
 radiation transport. On a mesh, source intensity is discretized spatially into
 mesh volume elements and by energy (into energy bins). There are three types of
 mesh volume element under different conditions:
+
 - Voxel, the volume element of structured mesh, used in voxel R2S;
 - Sub-voxel, the intersection of a voxel (of structured mesh) and a cell, used
   in sub-voxel R2S;
@@ -63,7 +64,7 @@ Implementation
 
 The Sampler class reads :math:`\hat{q}` and optionally :math:`\hat{q}'` from a
 MOAB mesh. PDFs are created using the method described above. In order to efficiently
-sample these PDFs an alias table is created [1][2]. This data structure requires an
+sample these PDFs an alias table is created [1]_ [2]_. This data structure requires an
 :math:`O(n^2)` setup step, but then allows for :math:`O(1)` sampling. Monte
 Carlo radiation transport typically involves the simulation of :math:`10^{6}`
 to :math:`10^{12}` particles, so this expensive setup step is well-justified. 
@@ -89,7 +90,7 @@ within the hexahedron:
      P = O + v_1 \cdot \vec{x} + v_2 \cdot \vec{y} + v_3 \cdot \vec{z}
 
 A similar method is used for uniformly sampling within a tetrahedron, as
-described in [3].
+described in [3]_.
 
 ***********
 Assumptions
@@ -175,11 +176,11 @@ ratio of the unbiased to biased PDF values:
 References
 **********
 
-[1] M. D. Vose, IEEE T. Software Eng. 17, 972 (1991)
+.. [1] M. D. Vose, IEEE T. Software Eng. 17, 972 (1991)
 
-[2] A. J. Walker, Electronics Letters 10, 127 (1974); ACM TOMS 3, 253 (1977)
+.. [2] A. J. Walker, Electronics Letters 10, 127 (1974); ACM TOMS 3, 253 (1977)
 
-[3] C. Rocchini and P. Cignoni, "Generating Random Points in a Tetrahedron," 
+.. [3] C. Rocchini and P. Cignoni, "Generating Random Points in a Tetrahedron," 
     Journal of Graphics Tools, 5, 200–202 (2001).
 
 ***************
