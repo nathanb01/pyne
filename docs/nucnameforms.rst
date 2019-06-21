@@ -1,6 +1,6 @@
 #. **id (zas)**: This type places the charge of the nucleus out front, then has three
    digits for the atomic mass number, and ends with four state digits (0 = ground,
-   1 = first excited state, 2 = second excited state, etc).  Uranium-235 here would
+   1 = first metastable state, 2 = second metastable state, etc).  Uranium-235 here would
    be expressed as '922350000'.  This is th canonical form for nuclides.
 #. **name**: This is the more common, human readable notation.  The chemical symbol
    (one or two characters long) is first, followed by the atomic weight.  Lastly if
@@ -9,7 +9,7 @@
    return name form with the dash removed and all letters uppercase.
 #. **zzaaam**: This type places the charge of the nucleus out front, then has three
    digits for the atomic mass number, and ends with a metastable flag (0 = ground,
-   1 = first excited state, 2 = second excited state, etc).  Uranium-235 here would
+   1 = first metastable state, 2 = second metastable state, etc).  Uranium-235 here would
    be expressed as '922350'.
 #. **zzzaaa**: This type places the charge of the nucleus out front, then has three
    digits for the atomic mass.  It contains no information about the excited state.
