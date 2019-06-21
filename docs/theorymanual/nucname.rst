@@ -51,7 +51,7 @@ In situations where the input naming convention is well-defined, it is *highly*
 recommended that you use the direct ``<form>_to_id()`` functions (e.g. 
 ``mcnp_to_id()``) to convert from a nuclide in the given form to the id form 
 representation. When a high level of quality assurance is required, it is 
-advisable to require an specific input format to leverage the exactness of the 
+advisable to require a specific input format to leverage the exactness of the 
 direct-to-id functions.
 
 However, in situations where arbitrary nuclide naming conventions are allowed, 

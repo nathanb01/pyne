@@ -10,7 +10,7 @@ Decay
 
 The Bateman equations governing radioactive decay are an important subexpression
 of generalized transmutation equations. In many cases, it is desirable to compute
-decay on its own, outside of the presence of an neutron or photon field.  In this
+decay on its own, outside of the presence of a neutron or photon field.  In this
 case radioactive decay is a function solely on intrinsic physical parameters,
 namely half-lives. This document recasts the Bateman equations into a form that
 is better suited for computation than the traditional expression.
@@ -74,7 +74,7 @@ in front of the summation:
 
     N_C(t) = N_1(0)  \gamma \left[1.0 - \sum_{i=1}^{C-1} \left(\prod_{j=1,i\ne j}^{C-1} \frac{\lambda_j}{\lambda_j - \lambda_i} \right) e^{-\lambda_i t} \right]
 
-Now, certain chains have intermeadiate nuclides that are *almost* stable. For example, decaying
+Now, certain chains have intermediate nuclides that are *almost* stable. For example, decaying
 from Es-254 to Po-210 goes through U-238, which is very close to stable relative to all of the
 other nuclides in the chain. This can trigger floating point precision issues, where certain
 terms will underflow or overflow or generate NaNs. Obviously this is a situation to be avoided,
@@ -136,7 +136,7 @@ the summation and handled separately. As previously, then take :math:`\lambda_C 
 
 
 Lastly, we must handle the degenerate case where two nuclides in a chain  have the same exact half-lives.
-This unfortunate situation arrises out of the fundemental nuclear data. Let's call these the pth and qth
+This unfortunate situation arises out of the fundemental nuclear data. Let's call these the pth and qth
 species. To prevent underflow, overflow, and NaNs, we must separate these nuclides out of the summation
 and then take the limit as :math:`\lambda_q \to \lambda_p`.
 
@@ -227,8 +227,8 @@ where the coefficients :math:`k_i` are defined as:
 
 
 
-If :math:`k_i` are computed at run time then the this expression results in much more
-computational effort that than the original Bateman equations since :math:`\gamma/\lambda_C`
+If :math:`k_i` are computed at run time then this expression results in much more
+computational effort than the original Bateman equations since :math:`\gamma/\lambda_C`
 are brought into the summation. However, when :math:`k_i` are pre-caluclated,
 many floating point operations are saved by avoiding explicitly computing :math:`c_i`.
 

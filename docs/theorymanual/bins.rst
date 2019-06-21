@@ -8,7 +8,7 @@ Binning
 
 This page explains the mathematics behind the binning functionality found in 
 :py:mod:`bins`. The binning functions are purely mathematical in nature though 
-they do have application in other parts of pyne that deal more directly physics 
+they do have application in other parts of pyne that deal more directly 
 with physics.
 
 *****************************
@@ -28,7 +28,7 @@ collapsed value :math:`y_g` is:
     y_g = \frac{1}{x_{g+1} - x_g} \sum_{n|x_g \le x_n}^{x_n \le x_{g+1}}
         \frac{y_{n+1} + y_n}{2} * (x_{n+1} - x_n)
 
-The term :math:`(y_{n+1} + y_n)/2` is the center (average) value of a linear 
+The term :math:`(y_{n+1} + y_n)/2` is the center (mean) value of a linear 
 interpolation between the two points.  Therefore, :math:`y_g` is the 
 :math:`x`-weighted average of :math:`y` over the entire group.  
 

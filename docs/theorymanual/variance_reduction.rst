@@ -12,7 +12,7 @@ Variance Reduction
 CADIS Method
 ************
 
-The Consistent Adjoint-Driven Importance Sampling (CADIS) method [1] is a Monte
+The Consistent Adjoint-Driven Importance Sampling (CADIS) method [1]_ is a Monte
 Carlo variance reduction method that utilizes a deterministic estimate of the
 adjoint flux (the *importance*) to generate a biased source and weight windows
 that optimize a Monte Carlo simulation relative to a detector response
@@ -57,7 +57,7 @@ volume elements) and energy (in energy bins).
 Source density (:math:`q'`, units: :math:`time^{-1}length^{-3}`) is the
 canonical quantity for representing a mesh-based source within PyNE. This
 means that the first step of the CADIS method within PyNE is to create a :math:`q`
-PDF from a source density mesh. The total source strength :math:`q_tot` is
+PDF from a source density mesh. The total source strength :math:`q_{tot}` is
 first found by integrating the source density over space (:math:`i`) and energy
 (:math:`j`):
 
@@ -69,7 +69,7 @@ The :math:`q` PDF can then be defined by:
 
 .. math::
 
-    q_{i,j } = \frac{V_i \, q'_{i, j}}{q_tot} \, for i \in I, j \in J
+    q_{i,j } = \frac{V_i \, q'_{i, j}}{q_{tot}} \, for i \in I, j \in J
 
 The response can then be calculated by integrating the product of :math:`q` and the adjoint flux over all phase space:
 
@@ -113,8 +113,8 @@ The source density mesh and adjoint flux mesh must have the spatial bounds.
 Sample Calculations
 ...................
 
-In this section the expected results for the the test_variancereduction.py unit
-test "test_cadis_multiple_e" are calculated. Consider a 2D mesh with the
+In this section the expected results for the test_variancereduction.py unit
+test, "test_cadis_multiple_e" are calculated. Consider a 2D mesh with the
 following properties.
 
 +---------------------------+---------------------------+
@@ -185,7 +185,7 @@ in the form of fluxes, populations, or weights is obtained and then used to
 generate mesh-based weight windows or importances. This method recognizes 
 the initial particle distribution will be poor in some highly attenuated regions
 but upon iteration of the MAGIC method, the solution will improve. Below are the
-steps for the MAGIC method. [2]
+steps for the MAGIC method. [2]_
 
 1. Run MCNP, in analogue mode, to set up a flux meshtally. Multigroup cross 
    section data and a high energy cut-off, corresponding to a mean-free path no 
@@ -198,7 +198,7 @@ steps for the MAGIC method. [2]
 3. Modify the original MCNP input to use the generated weight window file and 
    run again.
 
-4. If results are are sufficient, no further iterations are necessary. Else, 
+4. If results are sufficient, no further iterations are necessary. Else, 
    repeat starting from step 2 until desired flux results are obtained.
    
 5. If a high energy cut-off was used, reduce the cut-off energy and repeat 
@@ -210,7 +210,7 @@ PyNE implementation
 ...................
 
 The implementation of MAGIC in PyNE uses a PyNE meshtally object, which is the 
-result of a meshtal file processed by PyNE's mcnp.Meshtally. Using the results 
+result of a meshtal file processed by PyNE's mcnp. Meshtally. Using the results 
 of the meshtal file and a specified tolerance for relative error :math:`t` and 
 null value :math:`\phi_o`, the flux will be normalized for each energy bin and 
 then be used to generate a wwinp file to be used in a subsequent iteration. The 
@@ -282,11 +282,11 @@ The values :math:`\phi_i^{'k}` are then set as the new weight window values.
 References
 **********
 
-[1] Haghighat, A. and Wagner, J. C., "Monte Carlo Variance Reduction with 
+.. [1] Haghighat, A. and Wagner, J. C., "Monte Carlo Variance Reduction with 
     Deterministic Importance Functions," Progress in Nuclear Energy, Vol. 42,
     No. 1, pp. 25-53, 2003.
     
-[2] Davis, A. and Turner, A., "Comparison of global variance reduction 
+.. [2] Davis, A. and Turner, A., "Comparison of global variance reduction 
     techniques for Monte Carlo radiation transport simulations of ITER," Fusion 
     Engineering and Design, Vol. 86, Issues 9-11, pp. 2698-2700, 2011.
 

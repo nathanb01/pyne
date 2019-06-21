@@ -9,13 +9,13 @@ Spatial Solvers
 This page presents a brief summary of the implemented spatial discretization  methods used in the 
 :py:mod:`spatialsolver` module. For full details, consult "Development of a 
 Quantitative Decision Metric for Selecting the Most Suitable Discretization 
-Method for SN Transport Problems", a dissertation by Sebastian Schunert [Schunert]_.
+Method for :math: `S_{N}` Transport Problems", a dissertation by Sebastian Schunert [Schunert]_.
 Chapter 2 contains a detailed description of the methods implemented in PyNE. All 
 code in this module is derived from Dr. Schunert's PhD work.
 
-The first order multigroup SN transport equations are a set of hyperbolic partial
+The first order multigroup :math: `S_{N}` transport equations are a set of hyperbolic partial
 differential equations that are derived from the neutron transport equation by discretization
-of energy (multigroup) and direction (SN method). A single SN equations  approximates the 
+of energy (multigroup) and direction (SN method). A single :math: `S_{N}` equation  approximates the 
 neutron angular flux along a specific angular direction omega, such that omega(n)=(mu,
 eta,xi)^T, with n = 1,..,N, for a specific energy group.
 The spatial solver module contains a suite of discretization methods for the spatial dependence of the 
@@ -60,8 +60,8 @@ General AHOTN
 
 The Arbitrarily High Order Transport Method of the Nodal type (AHOTN) is a class 
 of methods that was developed based on physical intuition for providing accurate 
-solutions to the SN transport equations on optically thick cells. As the AHOTN methods
-are based on taking transverse moments of the SN equations, they are also referred to 
+solutions to the :math: `S_{N}` transport equations on optically thick cells. As the AHOTN methods
+are based on taking transverse moments of the :math: `S_{N}` equations, they are also referred to 
 as transverse moment based (TMB) method.
 
 TMB methods can derived for an arbitrary expansion order Λ denoting the expansion
@@ -69,11 +69,11 @@ order of the volumetric source term into Legendre polynomials.
 The set of equations for each angular direction and spatial mesh cell consists of
 two types of equations:
 
-* Volumetric moments of the SN equations with respect to Legendre polynomials (balance equations).
+* Volumetric moments of the :math: `S_{N}` equations with respect to Legendre polynomials (balance equations).
   These equations have volume as well as face unknowns with the total number being larger than the
   number of equations.
 * Closure relations derived via the transverse moment formalism. The transverse moment formalism 
-  is applied for the x, y and z direction separately and yields a ODE in the corresponding variable,
+  is applied for the x, y and z direction separately and yields an ODE in the corresponding variable,
   respectively ([Schunert]_, p.33).  
 
 TMB methods are particularly good at resulting in accurate solutions on coarse 
@@ -84,7 +84,7 @@ resulting in either extremely inaccurate or negative solutions.
 The AHOTN methods are unique compared to most other TMB methods because they are
 developed to have a very compact weighted diamond difference (WDD) representation 
 of the per-cell set of equations.  A full derivation of the AHOTN solutions to 
-the SN equations can be found on pages 34-40 of [Schunert]_.  
+the :math: `S_{N}` equations can be found on pages 34-40 of [Schunert]_.  
 
 There are three TMB solvers accessible in PyNE, discussed further below:
 
@@ -100,7 +100,7 @@ AHOTN-NEFD
 
 The AHOTN method can be conveniently cast into a WDD form with all the AHOTN
 specifics lumped into spatial weights - one for each angular direction, spatial dimension and spatial mesh cell. 
-Thus, a standard weighted diamond difference solver (WWD) that is available in most first order SN transport codes can be used to solve the per-cell AHOTN system of equations. 
+Thus, a standard weighted diamond difference solver (WWD) that is available in most first order :math: `S_{N}` transport codes can be used to solve the per-cell AHOTN system of equations. 
 Typically, the WDD relations are solved for the outflow face moments and substituted into the nodal
 balance relations, which are then solved for the (Λ + 1)^3 unknown nodal flux 
 moments (this is called the NEFD algorithm) ([Schunert]_, p.37).
@@ -124,7 +124,7 @@ methods. The linear nature of this approximation allows for
 achieving high accuracy in reasonably short execution time, thus resulting in 
 improved computational efficiency" ([Schunert]_, p.37). 
 The major difference to the AHOTN-1 method is that only those volume moments are retained
-whose sum (over x,y, and z) is equal or less than one. Further, the leakage terms are appropriately
+whose sum (over x, y, and z) is equal to or less than one. Further, the leakage terms are appropriately
 truncated to not introduce more unknowns. This reduces the number of equations to four balance relations and twelve WDD equations
 in three-dimensional geometry ([Schunert]_, p.38).
 
@@ -143,15 +143,15 @@ General DGFEM
 
 The classical DFEM method is based on approximating the flux shape with polynomials within 
 each cell. To derive a set of equations for the unknown expansion coefficients, the weak form 
-of the SN transport equations is used. The weak form is an integral statement that is obtained
-by multiplying the SN transport equations with a test function and integrating it over the extend
+of the :math: `S_{N}` transport equations is used. The weak form is an integral statement that is obtained
+by multiplying the :math: `S_{N}` transport equations with a test function and integrating it over the extent
 of a single mesh cell; finally using Green's theorem yields the weak form. 
-The weak form is used by selecting identical polynomial test and trial functions sets and substituting
+The weak form is used by selecting identical polynomial test and trial function sets and substituting
 them into the weak form. As there are as many test functions as there are expansion coefficients, a closed
 set of equations is obtained ([Schunert]_, p.25).
 
 Two families of DGFEM function spaces are most commonly used in discretizing the
-spatial variable in the SN approximation of the transport equation ([Schunert]_, p.27):
+spatial variable in the :math: `S_{N}` approximation of the transport equation ([Schunert]_, p.27):
 
 1. the *complete* family and 
 2. the *Lagrange* family 
@@ -159,7 +159,7 @@ spatial variable in the SN approximation of the transport equation ([Schunert]_,
 The *complete* expansion of order Λ uses all Legendre polynomials whose orders sum at most Λ (Note that it does not
 matter which type of polynomials are used, instead of Legendre polynomials the set of monomials spanning the same space
 could be used). In contrast the *Lagrange* uses all Legendre polynomials whose maximum moment in x, y, or z dimension
-is less or equal than Λ. Thus, the *Lagrange* family of the same order comprises more members than the *complete* 
+is less than or equal to Λ. Thus, the *Lagrange* family of the same order comprises more members than the *complete* 
 family.   
 
 There are three DGFEM-type solvers accessible in PyNE, discussed further below:
@@ -178,7 +178,7 @@ is more accurate, but the *complete* family executes more quickly.
 DGFEM-Lagrange
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The DGFEM-Lagrange family solver is implemented using Legendre polynomial as 
+The DGFEM-Lagrange family solver is implemented using Legendre polynomials as 
 basis functions (remember that Lagrange in this context does not refer to using
 Lagrange polynomials but rather to the members of the function space, or more accurately
 their span). The DGFEM-Lagrange solver can handle arbitrary expansion orders. 
@@ -191,7 +191,7 @@ DGFEM-complete
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The same comments as for the DGFEM-Lagrange apply but the number of unknowns is
-(Λ+3)*(Λ+2)*(Λ+1)/6. For Λ=1 a special version, the DGFEM-LD solver, was implemented. 
+(Λ+3)*(Λ+2)*(Λ+1)/6. For Λ=1, a special version, the DGFEM-LD solver, was implemented. 
 
 .. _dgfem-ld:
 
@@ -211,22 +211,21 @@ saving execution time ([Schunert]_, p.92).
 SCT-STEP
 *****************************
 
-One of the problems  most spatial solvers encounter when solving the SN equations is the
-limited smoothness of the exact solution. Depending on the boundary conditions, realistic SN problems
+One of the problems  most spatial solvers encounter when solving the :math: `S_{N}` equations is the
+limited smoothness of the exact solution. Depending on the boundary conditions, realistic :math: `S_{N}` problems
 either have discontinuous angular fluxes or discontinuous first derivatives. The lack of smoothness
 stems from the non-smoothness of the boundary conditions at the corners of the domain (edges in three-dimensional geometry). 
 This leads to a line (planes in 3D) of discontinuity within the domain which is referred to as Singular Characteristic (SC) 
 (Singular Planes (SPs) in 3D).
 
-In particular for problems featuring a discontinuous angular flux, standard spatial discretization methods
+In particular, for problems featuring a discontinuous angular flux, standard spatial discretization methods
 deliver inaccurate results that, depending on the chosen error norm, either do not converge to the exact solution (cell wise 
 error norm) or converge at an extremely small convergence rate. 
 
 A new method called Singular Characteristic Tracking Step solver (SCT-STEP) was developed by Schunert
 and Azmy to try to rectify this, by using a "step approximation in all cells
 that are intersected by lines and planes of non-smoothness" ([Schunert]_, p.4).
-The SCT-STEP method is an extension of Duo’s SCT Step algorithm to three-
-dimensional cartesian geometry.
+The SCT-STEP method is an extension of Duo’s SCT Step algorithm to three-dimensional cartesian geometry.
 
 The basic idea for the SCT-STEP is borrowed from Duo's method: In 
 two-dimensional geometry Duo suggested tracking the singular characteristic line
@@ -253,7 +252,7 @@ system is pre-solved or because no linear system needs to be solved.
 With increasing the expansion order, the computation time increases dramatically. This is mainly
 driven by the linear solve time, which makes up the fastest growing part of the computation time: the
 LU decomposition’s execution time scales cubically with the number of degrees of freedom of the
-linear system of equations, i.e. Λ^6 . It is therefore not surprising that among the arbitrary order
+linear system of equations, i.e. Λ^6. It is therefore not surprising that among the arbitrary order
 methods, the DGFEM with complete function space requires the least execution time, and HODD is
 only marginally cheaper than AHOTN. DGFEM with Lagrange function space and Λ > 1, however,
 surprisingly takes the longest execution time. The reason why DGLA-Λ with Λ > 1 features
@@ -282,7 +281,7 @@ Solver Assumptions
 1.  All systems are steady state (no time dependence).
 2.  All mediums are non-multiplying (sigmaf = 0). This is a limitation of the iteration structure around the 
     spatial solvers. The spatial solvers are not limited to non-multiplying media.
-3.  Isotropic scattering present.
+3.  Isotropic scattering is present.
 
 .. _refs:
 

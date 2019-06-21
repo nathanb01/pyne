@@ -46,6 +46,6 @@
    information about the nuclide's state.  
 #. **state_id**: The state id naming convention uses the form zzzaaassss. It is 
    different from the canonical zzzaaassss form in that ssss refers to a list 
-   of states by ordered by energy. This is derived from the levels listed in the 
+   of states ordered by energy. This is derived from the levels listed in the 
    ENSDF files for a given nuclide. Using this form is dangerous as it may change 
    with new releases of ENSDF data.
