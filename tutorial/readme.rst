@@ -14,7 +14,9 @@ The Great PyNE Tutorial
 7. `Transmutation <http://nbviewer.ipython.org/urls/raw.github.com/pyne/tutorial/master/06-transmutation.ipynb>`_
 8. `Mesh Basics <http://nbviewer.ipython.org/urls/raw.github.com/pyne/tutorial/master/07-mesh-basics.ipynb>`_
 9. `Diffusion <http://nbviewer.ipython.org/urls/raw.github.com/pyne/tutorial/master/08-diffusion.ipynb>`_
-10. `Outro <http://nbviewer.ipython.org/urls/raw.github.com/pyne/tutorial/master/09-outro.ipynb>`_
+10. `Spatial Solver <http://nbviewer.ipython.org/urls/raw.github.com/pyne/tutorial/master/09-spatial-solver.ipynb>`_
+11. `Ensdf Processing <http://nbviewer.ipython.org/urls/raw.github.com/pyne/tutorial/master/10-ensdf-processing.ipynb>`_
+12. `Outro <http://nbviewer.ipython.org/urls/raw.github.com/pyne/tutorial/master/11-outro.ipynb>`_
 
 Dependencies
 ------------
