@@ -9,13 +9,13 @@ Spatial Solvers
 This page presents a brief summary of the implemented spatial discretization  methods used in the 
 :py:mod:`spatialsolver` module. For full details, consult "Development of a 
 Quantitative Decision Metric for Selecting the Most Suitable Discretization 
-Method for :math: `S_{N}` Transport Problems", a dissertation by Sebastian Schunert [Schunert]_.
+Method for :math:`S_{N}` Transport Problems", a dissertation by Sebastian Schunert [Schunert]_.
 Chapter 2 contains a detailed description of the methods implemented in PyNE. All 
 code in this module is derived from Dr. Schunert's PhD work.
 
-The first order multigroup :math: `S_{N}` transport equations are a set of hyperbolic partial
+The first order multigroup :math:`S_{N}` transport equations are a set of hyperbolic partial
 differential equations that are derived from the neutron transport equation by discretization
-of energy (multigroup) and direction (SN method). A single :math: `S_{N}` equation  approximates the 
+of energy (multigroup) and direction (SN method). A single :math:`S_{N}` equation  approximates the 
 neutron angular flux along a specific angular direction omega, such that omega(n)=(mu,
 eta,xi)^T, with n = 1,..,N, for a specific energy group.
 The spatial solver module contains a suite of discretization methods for the spatial dependence of the 
@@ -60,8 +60,8 @@ General AHOTN
 
 The Arbitrarily High Order Transport Method of the Nodal type (AHOTN) is a class 
 of methods that was developed based on physical intuition for providing accurate 
-solutions to the :math: `S_{N}` transport equations on optically thick cells. As the AHOTN methods
-are based on taking transverse moments of the :math: `S_{N}` equations, they are also referred to 
+solutions to the :math:`S_{N}` transport equations on optically thick cells. As the AHOTN methods
+are based on taking transverse moments of the :math:`S_{N}` equations, they are also referred to 
 as transverse moment based (TMB) method.
 
 TMB methods can derived for an arbitrary expansion order Λ denoting the expansion
@@ -69,7 +69,7 @@ order of the volumetric source term into Legendre polynomials.
 The set of equations for each angular direction and spatial mesh cell consists of
 two types of equations:
 
-* Volumetric moments of the :math: `S_{N}` equations with respect to Legendre polynomials (balance equations).
+* Volumetric moments of the :math:`S_{N}` equations with respect to Legendre polynomials (balance equations).
   These equations have volume as well as face unknowns with the total number being larger than the
   number of equations.
 * Closure relations derived via the transverse moment formalism. The transverse moment formalism 
@@ -84,7 +84,7 @@ resulting in either extremely inaccurate or negative solutions.
 The AHOTN methods are unique compared to most other TMB methods because they are
 developed to have a very compact weighted diamond difference (WDD) representation 
 of the per-cell set of equations.  A full derivation of the AHOTN solutions to 
-the :math: `S_{N}` equations can be found on pages 34-40 of [Schunert]_.  
+the :math:`S_{N}` equations can be found on pages 34-40 of [Schunert]_.  
 
 There are three TMB solvers accessible in PyNE, discussed further below:
 
@@ -100,7 +100,7 @@ AHOTN-NEFD
 
 The AHOTN method can be conveniently cast into a WDD form with all the AHOTN
 specifics lumped into spatial weights - one for each angular direction, spatial dimension and spatial mesh cell. 
-Thus, a standard weighted diamond difference solver (WWD) that is available in most first order :math: `S_{N}` transport codes can be used to solve the per-cell AHOTN system of equations. 
+Thus, a standard weighted diamond difference solver (WWD) that is available in most first order :math:`S_{N}` transport codes can be used to solve the per-cell AHOTN system of equations. 
 Typically, the WDD relations are solved for the outflow face moments and substituted into the nodal
 balance relations, which are then solved for the (Λ + 1)^3 unknown nodal flux 
 moments (this is called the NEFD algorithm) ([Schunert]_, p.37).
@@ -143,15 +143,15 @@ General DGFEM
 
 The classical DFEM method is based on approximating the flux shape with polynomials within 
 each cell. To derive a set of equations for the unknown expansion coefficients, the weak form 
-of the :math: `S_{N}` transport equations is used. The weak form is an integral statement that is obtained
-by multiplying the :math: `S_{N}` transport equations with a test function and integrating it over the extent
+of the :math:`S_{N}` transport equations is used. The weak form is an integral statement that is obtained
+by multiplying the :math:`S_{N}` transport equations with a test function and integrating it over the extent
 of a single mesh cell; finally using Green's theorem yields the weak form. 
 The weak form is used by selecting identical polynomial test and trial function sets and substituting
 them into the weak form. As there are as many test functions as there are expansion coefficients, a closed
 set of equations is obtained ([Schunert]_, p.25).
 
 Two families of DGFEM function spaces are most commonly used in discretizing the
-spatial variable in the :math: `S_{N}` approximation of the transport equation ([Schunert]_, p.27):
+spatial variable in the :math:`S_{N}` approximation of the transport equation ([Schunert]_, p.27):
 
 1. the *complete* family and 
 2. the *Lagrange* family 
@@ -211,8 +211,8 @@ saving execution time ([Schunert]_, p.92).
 SCT-STEP
 *****************************
 
-One of the problems  most spatial solvers encounter when solving the :math: `S_{N}` equations is the
-limited smoothness of the exact solution. Depending on the boundary conditions, realistic :math: `S_{N}` problems
+One of the problems  most spatial solvers encounter when solving the :math:`S_{N}` equations is the
+limited smoothness of the exact solution. Depending on the boundary conditions, realistic :math:`S_{N}` problems
 either have discontinuous angular fluxes or discontinuous first derivatives. The lack of smoothness
 stems from the non-smoothness of the boundary conditions at the corners of the domain (edges in three-dimensional geometry). 
 This leads to a line (planes in 3D) of discontinuity within the domain which is referred to as Singular Characteristic (SC) 
